@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.unibave.catalogoprodutos.R;
-import com.unibave.catalogoprodutos.model.DatabaseRepository;
+import com.unibave.catalogoprodutos.model.ProdutoDatabaseRepository;
 import com.unibave.catalogoprodutos.model.Produto;
 
 import java.util.UUID;
@@ -17,29 +17,42 @@ import java.util.UUID;
 
 public class CadastrarController extends Activity {
 
+    Button buttonBack;
+    Button buttonSave;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
-        Button buttonSave = (Button)findViewById(R.id.buttonSave);
+        buttonSave = (Button)findViewById(R.id.buttonSave);
+        buttonBack = (Button)findViewById(R.id.buttonBack);
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseRepository crud = new DatabaseRepository(getBaseContext());
+                ProdutoDatabaseRepository crud = new ProdutoDatabaseRepository(getBaseContext());
                 Produto p = new Produto();
-                EditText nome = (EditText)findViewById(R.id.editText);
-                EditText fornec = (EditText)findViewById((R.id.editText2));
-                EditText valor = (EditText)findViewById(R.id.editText3);
+                EditText nome = (EditText)findViewById(R.id.nome);
+                EditText fornecedor = (EditText)findViewById((R.id.fornecedor));
+                EditText valor = (EditText)findViewById(R.id.valor);
                 p.setId(UUID.randomUUID().toString());
                 p.setNome(nome.getText().toString());
-                p.setFornecedor(fornec.getText().toString());
+                p.setFornecedor(fornecedor.getText().toString());
                 p.setValor(valor.getText().toString());
 
-                             String resultado = crud.insereDado(p.getNome(),p.getFornecedor(),p.getValor());
+                String resultado = crud.insereDado(p.getNome(),p.getFornecedor(),p.getValor());
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(CadastrarController.this, ConsultaController.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CadastrarController.this,ConsultaController.class);
                 startActivity(intent);
                 finish();
             }

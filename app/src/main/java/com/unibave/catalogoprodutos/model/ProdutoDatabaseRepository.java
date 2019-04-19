@@ -5,12 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 
-public class DatabaseRepository {
+public class ProdutoDatabaseRepository {
 
     private SQLiteDatabase db;
     private Database banco;
 
-    public DatabaseRepository(Context context){
+    public ProdutoDatabaseRepository(Context context){
         banco = new Database(context);
     }
 

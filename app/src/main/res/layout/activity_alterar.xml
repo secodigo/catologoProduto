@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Titulo:"
+            android:text="Nome:"
             android:id="@+id/textView4"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -70,7 +70,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText4"
+            android:id="@+id/nome"
             android:layout_below="@+id/textView4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -81,9 +81,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Autor:"
+            android:text="Fornecedor:"
             android:id="@+id/textView5"
-            android:layout_below="@+id/editText4"
+            android:layout_below="@+id/nome"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="45dp" />
@@ -91,20 +91,20 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText5"
+            android:id="@+id/fornecedor"
             android:layout_below="@+id/textView5"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/editText4"
-            android:layout_alignEnd="@+id/editText4" />
+            android:layout_alignRight="@+id/nome"
+            android:layout_alignEnd="@+id/nome" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Editora:"
+            android:text="Valor:"
             android:id="@+id/textView6"
-            android:layout_below="@+id/editText5"
+            android:layout_below="@+id/fornecedor"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="39dp" />
@@ -112,7 +112,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText6"
+            android:id="@+id/valor"
             android:layout_below="@+id/textView6"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"

@@ -12,7 +12,7 @@ import android.widget.SimpleCursorAdapter;
 
 import com.unibave.catalogoprodutos.R;
 import com.unibave.catalogoprodutos.model.Database;
-import com.unibave.catalogoprodutos.model.DatabaseRepository;
+import com.unibave.catalogoprodutos.model.ProdutoDatabaseRepository;
 
 
 public class ConsultaController extends Activity {
@@ -23,14 +23,14 @@ public class ConsultaController extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta);
 
-        DatabaseRepository crud = new DatabaseRepository(getBaseContext());
+        ProdutoDatabaseRepository crud = new ProdutoDatabaseRepository(getBaseContext());
         final Cursor cursor = crud.carregaDados();
 
         String[] nomeCampos = new String[] {Database.ID, Database.NOME};
         int[] idViews = new int[] {R.id.idProduto, R.id.nomeProduto};
 
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
-                R.layout.livros_layout,cursor,nomeCampos,idViews, 0);
+                R.layout.produtos_layout,cursor,nomeCampos,idViews, 0);
         lista = (ListView)findViewById(R.id.listView);
         lista.setAdapter(adaptador);
 

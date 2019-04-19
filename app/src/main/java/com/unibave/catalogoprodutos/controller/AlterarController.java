@@ -10,18 +10,18 @@ import android.widget.EditText;
 
 import com.unibave.catalogoprodutos.R;
 import com.unibave.catalogoprodutos.model.Database;
-import com.unibave.catalogoprodutos.model.DatabaseRepository;
+import com.unibave.catalogoprodutos.model.ProdutoDatabaseRepository;
 
 
 public class AlterarController extends Activity {
-    EditText livro;
-    EditText autor;
-    EditText editora;
+    EditText nome;
+    EditText fornecedor;
+    EditText valor;
     Button buttonDelete;
     Button buttonBack;
     Button buttonAlter;
     Cursor cursor;
-    DatabaseRepository crud;
+    ProdutoDatabaseRepository crud;
     String codigo;
 
     @Override
@@ -30,25 +30,25 @@ public class AlterarController extends Activity {
         setContentView(R.layout.activity_alterar);
 
         codigo = this.getIntent().getStringExtra("codigo");
-        crud = new DatabaseRepository(getBaseContext());
-        livro = (EditText)findViewById(R.id.editText4);
-        autor = (EditText)findViewById(R.id.editText5);
-        editora = (EditText)findViewById(R.id.editText6);
+        crud = new ProdutoDatabaseRepository(getBaseContext());
+        nome = (EditText)findViewById(R.id.nome);
+        fornecedor = (EditText)findViewById(R.id.fornecedor);
+        valor = (EditText)findViewById(R.id.valor);
 
         buttonAlter = (Button)findViewById(R.id.buttonAlter);
         buttonDelete = (Button)findViewById(R.id.buttonDelete);
         buttonBack = (Button)findViewById(R.id.buttonBack);
 
         cursor = crud.carregaDadoById(Integer.parseInt(codigo));
-        livro.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.NOME)));
-        autor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.FORNECEDOR)));
-        editora.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.VALOR)));
+        nome.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.NOME)));
+        fornecedor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.FORNECEDOR)));
+        valor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.VALOR)));
 
         buttonAlter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crud.alteraRegistro(Integer.parseInt(codigo), livro.getText().toString(),autor.getText().toString(),
-                        editora.getText().toString());
+                crud.alteraRegistro(Integer.parseInt(codigo), nome.getText().toString(), fornecedor.getText().toString(),
+                        valor.getText().toString());
                 Intent intent = new Intent(AlterarController.this, ConsultaController.class);
                 startActivity(intent);
                 finish();
