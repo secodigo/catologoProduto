@@ -1,22 +1,17 @@
-package com.unibave.catalogoprodutos.controller;
+package com.unibave.catalogoprodutos.model;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 
-import com.unibave.catalogoprodutos.view.CriaBanco;
-
-/**
- * Created by allanromanato on 5/28/15.
- */
-public class BancoController {
+public class DatabaseRepository {
 
     private SQLiteDatabase db;
-    private CriaBanco banco;
+    private Database banco;
 
-    public BancoController(Context context){
-        banco = new CriaBanco(context);
+    public DatabaseRepository(Context context){
+        banco = new Database(context);
     }
 
     public String insereDado(String titulo, String autor, String editora){
@@ -57,9 +52,9 @@ public class BancoController {
     public Cursor carregaDadoById(int id){
         Cursor cursor;
         String[] campos =  {banco.ID,banco.TITULO,banco.AUTOR,banco.EDITORA};
-        String where = CriaBanco.ID + "=" + id;
+        String where = Database.ID + "=" + id;
         db = banco.getReadableDatabase();
-        cursor = db.query(CriaBanco.TABELA,campos,where, null, null, null, null, null);
+        cursor = db.query(Database.TABELA,campos,where, null, null, null, null, null);
 
         if(cursor!=null){
             cursor.moveToFirst();
@@ -74,19 +69,19 @@ public class BancoController {
 
         db = banco.getWritableDatabase();
 
-        where = CriaBanco.ID + "=" + id;
+        where = Database.ID + "=" + id;
 
         valores = new ContentValues();
         valores.put(banco.TITULO, titulo);
         valores.put(banco.AUTOR, autor);
         valores.put(banco.EDITORA, editora);
 
-        db.update(CriaBanco.TABELA,valores,where,null);
+        db.update(Database.TABELA,valores,where,null);
     }
 
     public void deletaRegistro(int id){
-        String where = CriaBanco.ID + "=" + id;
+        String where = Database.ID + "=" + id;
         db = banco.getReadableDatabase();
-        db.delete(CriaBanco.TABELA,where,null);
+        db.delete(Database.TABELA,where,null);
     }
 }

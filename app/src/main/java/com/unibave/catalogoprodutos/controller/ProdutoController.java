@@ -1,4 +1,4 @@
-package com.unibave.catalogoprodutos.view;
+package com.unibave.catalogoprodutos.controller;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,37 +9,37 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.unibave.catalogoprodutos.R;
-import com.unibave.catalogoprodutos.controller.BancoController;
+import com.unibave.catalogoprodutos.model.DatabaseRepository;
+import com.unibave.catalogoprodutos.model.Produto;
+
+import java.util.UUID;
 
 
-public class Inicial extends Activity {
+public class ProdutoController extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicial);
-
-        //Setar Atributos
         Button botao = (Button)findViewById(R.id.button);
-
 
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BancoController crud = new BancoController(getBaseContext());
+                DatabaseRepository crud = new DatabaseRepository(getBaseContext());
+                Produto p = new Produto();
                 EditText titulo = (EditText)findViewById(R.id.editText);
                 EditText autor = (EditText)findViewById((R.id.editText2));
                 EditText editora = (EditText)findViewById(R.id.editText3);
-                String tituloString = titulo.getText().toString();
-                String autorString = autor.getText().toString();
-                String editoraString = editora.getText().toString();
-                String resultado;
+                p.setId(UUID.randomUUID().toString());
+                p.setTitulo(titulo.getText().toString());
+                p.setAutor(autor.getText().toString());
+                p.setEditora(editora.getText().toString());
 
-                resultado = crud.insereDado(tituloString,autorString,editoraString);
-
+                             String resultado = crud.insereDado(p.getTitulo(),p.getAutor(),p.getEditora());
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(Inicial.this, Consulta.class);
+                Intent intent = new Intent(ProdutoController.this, ConsultaController.class);
                 startActivity(intent);
                 finish();
             }
