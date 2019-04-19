@@ -1,22 +1,19 @@
-package com.unibave.catalogoprodutos.view;
+package com.unibave.catalogoprodutos.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by allanromanato on 5/27/15.
- */
-public class CriaBanco extends SQLiteOpenHelper {
-    public static final String NOME_BANCO = "banco.db";
-    public static final String TABELA = "livros";
+public class Database extends SQLiteOpenHelper {
+    public static final String NOME_BANCO = "catalago";
+    public static final String TABELA = "produtos";
     public static final String ID = "_id";
     public static final String TITULO = "titulo";
     public static final String AUTOR = "autor";
     public static final String EDITORA = "editora";
     public static final int VERSAO = 1;
 
-    public CriaBanco(Context context){
+    public Database(Context context){
         super(context, NOME_BANCO,null,VERSAO);
     }
 

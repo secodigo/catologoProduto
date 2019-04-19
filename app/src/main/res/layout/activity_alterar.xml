@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Alterar"
+    tools:context=".controller.ProdutoController"
     android:id="@+id/Alter">
 
 
