@@ -14,8 +14,8 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".controller.ProdutoController"
-            android:label="Inicial" >
+            android:name=".controller.CadastrarController"
+            android:label="Cadastrar" >
         </activity>
         <activity
             android:name=".controller.AlterarController"
