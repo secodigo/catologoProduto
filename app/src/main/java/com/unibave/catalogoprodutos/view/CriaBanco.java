@@ -8,13 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by allanromanato on 5/27/15.
  */
 public class CriaBanco extends SQLiteOpenHelper {
-    protected static final String NOME_BANCO = "banco.db";
-    protected static final String TABELA = "livros";
-    protected static final String ID = "_id";
-    protected static final String TITULO = "titulo";
-    protected static final String AUTOR = "autor";
-    protected static final String EDITORA = "editora";
-    protected static final int VERSAO = 1;
+    public static final String NOME_BANCO = "banco.db";
+    public static final String TABELA = "livros";
+    public static final String ID = "_id";
+    public static final String TITULO = "titulo";
+    public static final String AUTOR = "autor";
+    public static final String EDITORA = "editora";
+    public static final int VERSAO = 1;
 
     public CriaBanco(Context context){
         super(context, NOME_BANCO,null,VERSAO);
