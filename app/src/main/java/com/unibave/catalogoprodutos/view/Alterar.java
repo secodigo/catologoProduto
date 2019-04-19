@@ -16,8 +16,9 @@ public class Alterar extends Activity {
     EditText livro;
     EditText autor;
     EditText editora;
-    Button alterar;
-    Button deletar;
+    Button buttonDelete;
+    Button buttonBack;
+    Button buttonAlter;
     Cursor cursor;
     BancoController crud;
     String codigo;
@@ -35,15 +36,16 @@ public class Alterar extends Activity {
         autor = (EditText)findViewById(R.id.editText5);
         editora = (EditText)findViewById(R.id.editText6);
 
-        alterar = (Button)findViewById(R.id.button2);
-        deletar = (Button)findViewById(R.id.button3);
+        buttonAlter = (Button)findViewById(R.id.buttonAlter);
+        buttonDelete = (Button)findViewById(R.id.buttonDelete);
+        buttonBack = (Button)findViewById(R.id.buttonBack);
 
         cursor = crud.carregaDadoById(Integer.parseInt(codigo));
         livro.setText(cursor.getString(cursor.getColumnIndexOrThrow(CriaBanco.TITULO)));
         autor.setText(cursor.getString(cursor.getColumnIndexOrThrow(CriaBanco.AUTOR)));
         editora.setText(cursor.getString(cursor.getColumnIndexOrThrow(CriaBanco.EDITORA)));
 
-        alterar.setOnClickListener(new View.OnClickListener() {
+        buttonAlter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 crud.alteraRegistro(Integer.parseInt(codigo), livro.getText().toString(),autor.getText().toString(),
@@ -54,7 +56,16 @@ public class Alterar extends Activity {
             }
         });
 
-        deletar.setOnClickListener(new View.OnClickListener() {
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Alterar.this,Consulta.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 crud.deletaRegistro(Integer.parseInt(codigo));
