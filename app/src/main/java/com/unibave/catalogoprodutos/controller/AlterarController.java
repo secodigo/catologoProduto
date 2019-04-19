@@ -58,7 +58,7 @@ public class AlterarController extends Activity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Alterar.this,Consulta.class);
+                Intent intent = new Intent(AlterarController.this,ConsultaController.class);
                 startActivity(intent);
                 finish();
             }

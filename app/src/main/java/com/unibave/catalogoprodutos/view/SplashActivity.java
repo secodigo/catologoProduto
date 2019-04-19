@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.unibave.catalogoprodutos.R;
+import com.unibave.catalogoprodutos.controller.ConsultaController;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         logo.setVisibility(View.GONE);
-                        Intent intent = new Intent(context, MainActivity.class);
+                        Intent intent = new Intent(context, ConsultaController.class);
                         startActivity(intent);
                         finish();
                     }
