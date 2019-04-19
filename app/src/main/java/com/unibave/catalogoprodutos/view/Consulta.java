@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import com.unibave.catalogoprodutos.R;
 import com.unibave.catalogoprodutos.controller.BancoController;
@@ -16,6 +17,7 @@ import com.unibave.catalogoprodutos.controller.BancoController;
 
 public class Consulta extends Activity {
     private ListView lista;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
