@@ -6,7 +6,7 @@
 
 
     <TextView
-        android:id="@+id/idLivro"
+        android:id="@+id/idProduto"
         android:layout_width="0dip"
         android:layout_gravity="fill_horizontal"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:text="ID" />
 
     <TextView
-        android:id="@+id/nomeLivro"
+        android:id="@+id/nomeProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"

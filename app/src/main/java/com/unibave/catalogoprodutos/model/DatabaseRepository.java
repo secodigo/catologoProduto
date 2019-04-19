@@ -14,15 +14,15 @@ public class DatabaseRepository {
         banco = new Database(context);
     }
 
-    public String insereDado(String titulo, String autor, String editora){
+    public String insereDado(String nome, String fornecedor, String valor){
         ContentValues valores;
         long resultado;
 
        db = banco.getWritableDatabase();
        valores = new ContentValues();
-       valores.put(banco.TITULO, titulo);
-       valores.put(banco.AUTOR, autor);
-       valores.put(banco.EDITORA, editora);
+       valores.put(banco.NOME, nome);
+       valores.put(banco.FORNECEDOR, fornecedor);
+       valores.put(banco.VALOR, valor);
 
        resultado = db.insertOrThrow(banco.TABELA, null, valores);
        db.close();
@@ -38,7 +38,7 @@ public class DatabaseRepository {
 
     public Cursor carregaDados(){
             Cursor cursor;
-            String[] campos =  {banco.ID,banco.TITULO};
+            String[] campos =  {banco.ID,banco.NOME};
             db = banco.getReadableDatabase();
             cursor = db.query(banco.TABELA, campos, null, null, null, null, null, null);
 
@@ -51,7 +51,7 @@ public class DatabaseRepository {
 
     public Cursor carregaDadoById(int id){
         Cursor cursor;
-        String[] campos =  {banco.ID,banco.TITULO,banco.AUTOR,banco.EDITORA};
+        String[] campos =  {banco.ID,banco.NOME,banco.FORNECEDOR,banco.VALOR};
         String where = Database.ID + "=" + id;
         db = banco.getReadableDatabase();
         cursor = db.query(Database.TABELA,campos,where, null, null, null, null, null);
@@ -63,7 +63,7 @@ public class DatabaseRepository {
         return cursor;
     }
 
-    public void alteraRegistro(int id, String titulo, String autor, String editora){
+    public void alteraRegistro(int id, String nome, String fornecedor, String valor){
         ContentValues valores;
         String where;
 
@@ -72,9 +72,9 @@ public class DatabaseRepository {
         where = Database.ID + "=" + id;
 
         valores = new ContentValues();
-        valores.put(banco.TITULO, titulo);
-        valores.put(banco.AUTOR, autor);
-        valores.put(banco.EDITORA, editora);
+        valores.put(banco.NOME, nome);
+        valores.put(banco.FORNECEDOR, fornecedor);
+        valores.put(banco.VALOR, valor);
 
         db.update(Database.TABELA,valores,where,null);
     }

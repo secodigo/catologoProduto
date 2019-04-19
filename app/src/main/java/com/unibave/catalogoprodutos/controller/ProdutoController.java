@@ -28,15 +28,15 @@ public class ProdutoController extends Activity {
             public void onClick(View v) {
                 DatabaseRepository crud = new DatabaseRepository(getBaseContext());
                 Produto p = new Produto();
-                EditText titulo = (EditText)findViewById(R.id.editText);
-                EditText autor = (EditText)findViewById((R.id.editText2));
-                EditText editora = (EditText)findViewById(R.id.editText3);
+                EditText nome = (EditText)findViewById(R.id.editText);
+                EditText fornec = (EditText)findViewById((R.id.editText2));
+                EditText valor = (EditText)findViewById(R.id.editText3);
                 p.setId(UUID.randomUUID().toString());
-                p.setTitulo(titulo.getText().toString());
-                p.setAutor(autor.getText().toString());
-                p.setEditora(editora.getText().toString());
+                p.setNome(nome.getText().toString());
+                p.setFornecedor(fornec.getText().toString());
+                p.setValor(valor.getText().toString());
 
-                             String resultado = crud.insereDado(p.getTitulo(),p.getAutor(),p.getEditora());
+                             String resultado = crud.insereDado(p.getNome(),p.getFornecedor(),p.getValor());
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(ProdutoController.this, ConsultaController.class);

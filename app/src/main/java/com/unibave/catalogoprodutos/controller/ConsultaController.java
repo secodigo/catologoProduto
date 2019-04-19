@@ -26,8 +26,8 @@ public class ConsultaController extends Activity {
         DatabaseRepository crud = new DatabaseRepository(getBaseContext());
         final Cursor cursor = crud.carregaDados();
 
-        String[] nomeCampos = new String[] {Database.ID, Database.TITULO};
-        int[] idViews = new int[] {R.id.idLivro, R.id.nomeLivro};
+        String[] nomeCampos = new String[] {Database.ID, Database.NOME};
+        int[] idViews = new int[] {R.id.idProduto, R.id.nomeProduto};
 
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
                 R.layout.livros_layout,cursor,nomeCampos,idViews, 0);

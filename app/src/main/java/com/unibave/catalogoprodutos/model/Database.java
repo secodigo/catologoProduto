@@ -5,12 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class Database extends SQLiteOpenHelper {
-    public static final String NOME_BANCO = "catalago";
-    public static final String TABELA = "produtos";
+    public static final String NOME_BANCO = "catalago_produtos";
+    public static final String TABELA = "lista_produtos";
     public static final String ID = "_id";
-    public static final String TITULO = "titulo";
-    public static final String AUTOR = "autor";
-    public static final String EDITORA = "editora";
+    public static final String NOME = "nome";
+    public static final String FORNECEDOR = "fornecedor";
+    public static final String VALOR = "valor";
     public static final int VERSAO = 1;
 
     public Database(Context context){
@@ -21,9 +21,9 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE "+TABELA+"("
                 + ID + " integer primary key autoincrement,"
-                + TITULO + " text,"
-                + AUTOR + " text,"
-                + EDITORA + " text"
+                + NOME + " text,"
+                + FORNECEDOR + " text,"
+                + VALOR + " text"
                 +")";
         db.execSQL(sql);
     }

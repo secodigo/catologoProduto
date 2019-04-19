@@ -3,9 +3,9 @@ package com.unibave.catalogoprodutos.model;
 public class Produto {
 
     private String id;
-    private String titulo;
-    private String autor;
-    private String editora;
+    private String nome;
+    private String fornecedor;
+    private String valor;
 
     public String getId() {
         return id;
@@ -15,27 +15,27 @@ public class Produto {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getFornecedor() {
+        return fornecedor;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setFornecedor(String fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
-    public String getEditora() {
-        return editora;
+    public String getValor() {
+        return valor;
     }
 
-    public void setEditora(String editora) {
-        this.editora = editora;
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 }

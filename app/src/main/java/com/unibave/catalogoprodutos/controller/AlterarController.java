@@ -40,9 +40,9 @@ public class AlterarController extends Activity {
         buttonBack = (Button)findViewById(R.id.buttonBack);
 
         cursor = crud.carregaDadoById(Integer.parseInt(codigo));
-        livro.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.TITULO)));
-        autor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.AUTOR)));
-        editora.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.EDITORA)));
+        livro.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.NOME)));
+        autor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.FORNECEDOR)));
+        editora.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.VALOR)));
 
         buttonAlter.setOnClickListener(new View.OnClickListener() {
             @Override
