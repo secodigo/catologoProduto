@@ -51,7 +51,7 @@ public class ConsultaController extends Activity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(ConsultaController.this, ProdutoController.class);
+                Intent it = new Intent(ConsultaController.this, CadastrarController.class);
                 startActivity(it);
                 finish();
             }

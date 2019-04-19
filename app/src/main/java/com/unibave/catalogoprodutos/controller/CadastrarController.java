@@ -15,15 +15,15 @@ import com.unibave.catalogoprodutos.model.Produto;
 import java.util.UUID;
 
 
-public class ProdutoController extends Activity {
+public class CadastrarController extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicial);
-        Button botao = (Button)findViewById(R.id.button);
+        setContentView(R.layout.activity_cadastrar);
+        Button buttonSave = (Button)findViewById(R.id.buttonSave);
 
-        botao.setOnClickListener(new View.OnClickListener() {
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatabaseRepository crud = new DatabaseRepository(getBaseContext());
@@ -39,7 +39,7 @@ public class ProdutoController extends Activity {
                              String resultado = crud.insereDado(p.getTitulo(),p.getAutor(),p.getEditora());
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(ProdutoController.this, ConsultaController.class);
+                Intent intent = new Intent(CadastrarController.this, ConsultaController.class);
                 startActivity(intent);
                 finish();
             }
