@@ -40,7 +40,7 @@ public class CadastrarController extends Activity {
                 p.setFornecedor(fornecedor.getText().toString());
                 p.setValor(valor.getText().toString());
 
-                String resultado = crud.insereDado(p.getNome(),p.getFornecedor(),p.getValor());
+                String resultado = crud.insert(p.getNome(),p.getFornecedor(),p.getValor());
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(CadastrarController.this, ConsultaController.class);

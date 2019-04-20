@@ -24,7 +24,7 @@ public class ConsultaController extends Activity {
         setContentView(R.layout.activity_consulta);
 
         ProdutoDatabaseRepository crud = new ProdutoDatabaseRepository(getBaseContext());
-        final Cursor cursor = crud.carregaDados();
+        final Cursor cursor = crud.findAll();
 
         String[] nomeCampos = new String[] {Database.ID, Database.NOME};
         int[] idViews = new int[] {R.id.idProduto, R.id.nomeProduto};
