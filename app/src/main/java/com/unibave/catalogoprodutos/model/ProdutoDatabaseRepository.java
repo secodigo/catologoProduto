@@ -14,15 +14,15 @@ public class ProdutoDatabaseRepository {
         banco = new Database(context);
     }
 
-    public String insert(String nome, String fornecedor, String valor){
+    public String insert(Produto domain){
         ContentValues values;
         long resultado;
 
        db = banco.getWritableDatabase();
        values = new ContentValues();
-       values.put(banco.NOME, nome);
-       values.put(banco.FORNECEDOR, fornecedor);
-       values.put(banco.VALOR, valor);
+       values.put(banco.NOME, domain.getNome());
+       values.put(banco.FORNECEDOR, domain.getFornecedor());
+       values.put(banco.VALOR, domain.getValor());
 
        resultado = db.insertOrThrow(banco.TABELA, null, values);
        db.close();
@@ -31,9 +31,6 @@ public class ProdutoDatabaseRepository {
            return "Erro ao inserir registro";
        else
            return "Registro Inserido com sucesso";
-
-
-
     }
 
     public Cursor findAll(){
@@ -63,25 +60,34 @@ public class ProdutoDatabaseRepository {
         return cursor;
     }
 
-    public void update(int id, String nome, String fornecedor, String valor){
+    public String update(Produto domain){
         ContentValues values;
         String where;
 
         db = banco.getWritableDatabase();
 
-        where = Database.ID + "=" + id;
+        where = Database.ID + "=" + domain.getId();
 
         values = new ContentValues();
-        values.put(banco.NOME, nome);
-        values.put(banco.FORNECEDOR, fornecedor);
-        values.put(banco.VALOR, valor);
+        values.put(banco.NOME, domain.getNome());
+        values.put(banco.FORNECEDOR, domain.getFornecedor());
+        values.put(banco.VALOR, domain.getValor());
 
-        db.update(Database.TABELA,values,where,null);
+        long resultado = db.update(Database.TABELA,values,where,null);
+        if (resultado ==-1)
+            return "Erro ao atualizar registro";
+        else
+            return "Registro atualizado com sucesso";
     }
 
-    public void remove(int id){
+    public String remove(int id){
         String where = Database.ID + "=" + id;
         db = banco.getReadableDatabase();
-        db.delete(Database.TABELA,where,null);
+        long resultado = db.delete(Database.TABELA,where,null);
+
+        if (resultado ==-1)
+            return "Erro ao deletar registro";
+        else
+            return "Registro deletado com sucesso";
     }
 }

@@ -1,4 +1,4 @@
-package com.unibave.catalogoprodutos.controller;
+package com.unibave.catalogoprodutos.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.unibave.catalogoprodutos.R;
+import com.unibave.catalogoprodutos.controller.ProdutoController;
 import com.unibave.catalogoprodutos.model.Database;
-import com.unibave.catalogoprodutos.model.ProdutoDatabaseRepository;
 
 
-public class AlterarController extends Activity {
+public class AlterarActivity extends Activity {
     EditText nome;
     EditText fornecedor;
     EditText valor;
@@ -21,7 +22,7 @@ public class AlterarController extends Activity {
     Button buttonBack;
     Button buttonAlter;
     Cursor cursor;
-    ProdutoDatabaseRepository crud;
+    ProdutoController controller;
     String codigo;
 
     @Override
@@ -30,7 +31,7 @@ public class AlterarController extends Activity {
         setContentView(R.layout.activity_alterar);
 
         codigo = this.getIntent().getStringExtra("codigo");
-        crud = new ProdutoDatabaseRepository(getBaseContext());
+        controller = new ProdutoController(getBaseContext());
         nome = (EditText)findViewById(R.id.nome);
         fornecedor = (EditText)findViewById(R.id.fornecedor);
         valor = (EditText)findViewById(R.id.valor);
@@ -39,7 +40,7 @@ public class AlterarController extends Activity {
         buttonDelete = (Button)findViewById(R.id.buttonDelete);
         buttonBack = (Button)findViewById(R.id.buttonBack);
 
-        cursor = crud.findById(Integer.parseInt(codigo));
+        cursor = controller.findById(Integer.parseInt(codigo));
         nome.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.NOME)));
         fornecedor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.FORNECEDOR)));
         valor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.VALOR)));
@@ -47,9 +48,10 @@ public class AlterarController extends Activity {
         buttonAlter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crud.update(Integer.parseInt(codigo), nome.getText().toString(), fornecedor.getText().toString(),
+                String resultado = controller.update(codigo, nome.getText().toString(), fornecedor.getText().toString(),
                         valor.getText().toString());
-                Intent intent = new Intent(AlterarController.this, ConsultaController.class);
+                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(AlterarActivity.this, ConsultaActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -58,7 +60,7 @@ public class AlterarController extends Activity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AlterarController.this,ConsultaController.class);
+                Intent intent = new Intent(AlterarActivity.this, ConsultaActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -67,8 +69,9 @@ public class AlterarController extends Activity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crud.remove(Integer.parseInt(codigo));
-                Intent intent = new Intent(AlterarController.this, ConsultaController.class);
+                String resultado = controller.remove(Integer.parseInt(codigo));
+                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(AlterarActivity.this, ConsultaActivity.class);
                 startActivity(intent);
                 finish();
             }

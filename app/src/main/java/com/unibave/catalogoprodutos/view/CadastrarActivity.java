@@ -1,4 +1,4 @@
-package com.unibave.catalogoprodutos.controller;
+package com.unibave.catalogoprodutos.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,13 +9,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.unibave.catalogoprodutos.R;
-import com.unibave.catalogoprodutos.model.ProdutoDatabaseRepository;
+import com.unibave.catalogoprodutos.controller.ProdutoController;
 import com.unibave.catalogoprodutos.model.Produto;
 
 import java.util.UUID;
 
 
-public class CadastrarController extends Activity {
+public class CadastrarActivity extends Activity {
 
     Button buttonBack;
     Button buttonSave;
@@ -30,7 +30,7 @@ public class CadastrarController extends Activity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProdutoDatabaseRepository crud = new ProdutoDatabaseRepository(getBaseContext());
+                ProdutoController controller = new ProdutoController(getBaseContext());
                 Produto p = new Produto();
                 EditText nome = (EditText)findViewById(R.id.nome);
                 EditText fornecedor = (EditText)findViewById((R.id.fornecedor));
@@ -40,10 +40,10 @@ public class CadastrarController extends Activity {
                 p.setFornecedor(fornecedor.getText().toString());
                 p.setValor(valor.getText().toString());
 
-                String resultado = crud.insert(p.getNome(),p.getFornecedor(),p.getValor());
+                String resultado = controller.create(p.getNome(),p.getFornecedor(),p.getValor());
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(CadastrarController.this, ConsultaController.class);
+                Intent intent = new Intent(CadastrarActivity.this, ConsultaActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -52,7 +52,7 @@ public class CadastrarController extends Activity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CadastrarController.this,ConsultaController.class);
+                Intent intent = new Intent(CadastrarActivity.this, ConsultaActivity.class);
                 startActivity(intent);
                 finish();
             }
