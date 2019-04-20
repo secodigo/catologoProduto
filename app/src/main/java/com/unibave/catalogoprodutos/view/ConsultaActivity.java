@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import com.unibave.catalogoprodutos.R;
 import com.unibave.catalogoprodutos.controller.ProdutoController;
@@ -26,6 +27,9 @@ public class ConsultaActivity extends Activity {
         ProdutoController controller = new ProdutoController(getBaseContext());
         final Cursor cursor = controller.findAll();
 
+        TextView espacoBranco = findViewById(R.id.espacoBranco);
+        espacoBranco.setVisibility((cursor.getCount() <= 0 ? View.VISIBLE : View.INVISIBLE));
+
         String[] nomeCampos = new String[] {Database.ID, Database.NOME};
         int[] idViews = new int[] {R.id.idProduto, R.id.nomeProduto};
 
@@ -37,9 +41,8 @@ public class ConsultaActivity extends Activity {
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String codigo;
                 cursor.moveToPosition(position);
-                codigo = cursor.getString(cursor.getColumnIndexOrThrow(Database.ID));
+                String codigo = cursor.getString(cursor.getColumnIndexOrThrow(Database.ID));
                 Intent intent = new Intent(ConsultaActivity.this, AlterarActivity.class);
                 intent.putExtra("codigo", codigo);
                 startActivity(intent);
