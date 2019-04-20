@@ -14,17 +14,17 @@ public class ProdutoDatabaseRepository {
         banco = new Database(context);
     }
 
-    public String insereDado(String nome, String fornecedor, String valor){
-        ContentValues valores;
+    public String insert(String nome, String fornecedor, String valor){
+        ContentValues values;
         long resultado;
 
        db = banco.getWritableDatabase();
-       valores = new ContentValues();
-       valores.put(banco.NOME, nome);
-       valores.put(banco.FORNECEDOR, fornecedor);
-       valores.put(banco.VALOR, valor);
+       values = new ContentValues();
+       values.put(banco.NOME, nome);
+       values.put(banco.FORNECEDOR, fornecedor);
+       values.put(banco.VALOR, valor);
 
-       resultado = db.insertOrThrow(banco.TABELA, null, valores);
+       resultado = db.insertOrThrow(banco.TABELA, null, values);
        db.close();
 
        if (resultado ==-1)
@@ -36,7 +36,7 @@ public class ProdutoDatabaseRepository {
 
     }
 
-    public Cursor carregaDados(){
+    public Cursor findAll(){
             Cursor cursor;
             String[] campos =  {banco.ID,banco.NOME};
             db = banco.getReadableDatabase();
@@ -49,7 +49,7 @@ public class ProdutoDatabaseRepository {
             return cursor;
     }
 
-    public Cursor carregaDadoById(int id){
+    public Cursor findById(int id){
         Cursor cursor;
         String[] campos =  {banco.ID,banco.NOME,banco.FORNECEDOR,banco.VALOR};
         String where = Database.ID + "=" + id;
@@ -63,23 +63,23 @@ public class ProdutoDatabaseRepository {
         return cursor;
     }
 
-    public void alteraRegistro(int id, String nome, String fornecedor, String valor){
-        ContentValues valores;
+    public void update(int id, String nome, String fornecedor, String valor){
+        ContentValues values;
         String where;
 
         db = banco.getWritableDatabase();
 
         where = Database.ID + "=" + id;
 
-        valores = new ContentValues();
-        valores.put(banco.NOME, nome);
-        valores.put(banco.FORNECEDOR, fornecedor);
-        valores.put(banco.VALOR, valor);
+        values = new ContentValues();
+        values.put(banco.NOME, nome);
+        values.put(banco.FORNECEDOR, fornecedor);
+        values.put(banco.VALOR, valor);
 
-        db.update(Database.TABELA,valores,where,null);
+        db.update(Database.TABELA,values,where,null);
     }
 
-    public void deletaRegistro(int id){
+    public void remove(int id){
         String where = Database.ID + "=" + id;
         db = banco.getReadableDatabase();
         db.delete(Database.TABELA,where,null);

@@ -39,7 +39,7 @@ public class AlterarController extends Activity {
         buttonDelete = (Button)findViewById(R.id.buttonDelete);
         buttonBack = (Button)findViewById(R.id.buttonBack);
 
-        cursor = crud.carregaDadoById(Integer.parseInt(codigo));
+        cursor = crud.findById(Integer.parseInt(codigo));
         nome.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.NOME)));
         fornecedor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.FORNECEDOR)));
         valor.setText(cursor.getString(cursor.getColumnIndexOrThrow(Database.VALOR)));
@@ -47,7 +47,7 @@ public class AlterarController extends Activity {
         buttonAlter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crud.alteraRegistro(Integer.parseInt(codigo), nome.getText().toString(), fornecedor.getText().toString(),
+                crud.update(Integer.parseInt(codigo), nome.getText().toString(), fornecedor.getText().toString(),
                         valor.getText().toString());
                 Intent intent = new Intent(AlterarController.this, ConsultaController.class);
                 startActivity(intent);
@@ -67,7 +67,7 @@ public class AlterarController extends Activity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crud.deletaRegistro(Integer.parseInt(codigo));
+                crud.remove(Integer.parseInt(codigo));
                 Intent intent = new Intent(AlterarController.this, ConsultaController.class);
                 startActivity(intent);
                 finish();
